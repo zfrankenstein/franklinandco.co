@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Franklin & Co. — Podcast Production for Law Firms</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0e0e0e;
+    --paper: #f5f3ee;
+    --accent: #1a1a2e;
+    --gold: #b8963e;
+    --muted: #6b6b6b;
+    --rule: #d5d0c4;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-wordmark {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-wordmark span { color: var(--gold); }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  nav ul a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--ink); }
+
+  .nav-cta {
+    font-size: 0.78rem !important;
+    font-weight: 500 !important;
+    color: var(--ink) !important;
+    border: 1px solid var(--ink);
+    padding: 0.5rem 1.25rem;
+    transition: background 0.2s, color 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--ink) !important;
+    color: var(--paper) !important;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.2rem, 7vw, 6rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    max-width: 760px;
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 3rem;
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 2.25rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--ink); }
+
+  /* DIVIDER */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0;
+  }
+
+  /* SECTION WRAPPER */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  /* WHY */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .why-headline {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  .why-body {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.9;
+  }
+
+  .why-body p + p { margin-top: 1rem; }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+
+  .service-card {
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 2.5rem 2rem;
+    transition: background 0.2s;
+  }
+
+  .service-card:hover { background: rgba(184, 150, 62, 0.04); }
+
+  .service-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--rule);
+    margin-bottom: 1.5rem;
+    line-height: 1;
+  }
+
+  .service-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .service-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* PROOF */
+  .proof-section { background: var(--ink); }
+
+  .proof-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .proof-quote {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+    font-weight: 300;
+    font-style: italic;
+    color: #e8e4da;
+    line-height: 1.4;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.75rem;
+  }
+
+  .proof-stats { display: flex; flex-direction: column; gap: 2rem; }
+
+  .proof-stat {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 2rem;
+  }
+
+  .proof-stat:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .proof-number {
+    font-family: var(--serif);
+    font-size: 2.75rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+
+  .proof-desc {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+  }
+
+  .proof-source {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.25);
+    margin-top: 0.3rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* PROCESS */
+  .process-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    margin-top: 3rem;
+  }
+
+  .process-step {
+    padding: 2rem 1.5rem 2rem 0;
+    border-right: 1px solid var(--rule);
+  }
+
+  .process-step:last-child { border-right: none; padding-right: 0; }
+  .process-step:not(:first-child) { padding-left: 1.5rem; }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .step-desc {
+    font-size: 0.83rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    padding: 7rem 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+
+  .cta-section h2 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .cta-section p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+
+  .cta-email {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--muted);
+    margin-top: 1.25rem;
+    display: block;
+    text-decoration: none;
+  }
+
+  .cta-email:hover { color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 1.75rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-mark {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--rule);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    nav ul { display: none; }
+    .hero { padding: 7rem 1.25rem 4rem; }
+    .section { padding: 4rem 1.25rem; }
+    .why-grid, .proof-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-row { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-wordmark">Franklin <span>&</span> Co.</a>
+  <ul>
+    <li><a href="#why">Why</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Podcast Production for Law Firms</div>
+  <h1>Your expertise<br>deserves an <em>audience.</em></h1>
+  <p class="hero-sub">Franklin & Co. builds the podcast infrastructure that turns your attorneys into recognized authorities — and your firm into the one prospects already trust before they call.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Book a Discovery Call</a>
+    <a href="#services" class="btn-ghost">See what we do →</a>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- WHY -->
+<div id="why">
+  <div class="section">
+    <div class="why-grid">
+      <div>
+        <div class="section-label">Why Franklin & Co.</div>
+        <h2 class="why-headline">The best business<br>development doesn't<br>feel like marketing.</h2>
+      </div>
+      <div class="why-body">
+        <p>A podcast puts your attorneys' thinking in front of the right people — consistently, credibly, and at scale. By the time a prospect calls, they've already spent hours with your firm. They're not evaluating you. They've decided.</p>
+        <p>That's what authority does. It collapses the sales cycle. It attracts clients who are already aligned with how you think and what you stand for. It makes referrals easier to give and easier to act on.</p>
+        <p>Franklin & Co. handles every element of production — video, audio, clips, distribution — so your attorneys show up as the experts they are, without the overhead of running a media operation.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- SERVICES -->
+<div id="services">
+  <div class="section">
+    <div class="section-label">What We Do</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">Full-Service Production</div>
+        <p class="service-desc">Video and audio recording coordination, editing, mastering, and distribution — handled end to end. You record, we handle everything else.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-title">Content Strategy</div>
+        <p class="service-desc">Episode planning, guest prep, and topic calendars built around your practice areas and the clients you want to attract.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">Clips & Distribution</div>
+        <p class="service-desc">Short-form video clips, show notes, and social copy — repurposing each episode into a full week of content across every relevant platform.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- PROOF -->
+<div class="proof-section">
+  <div class="proof-inner">
+    <div class="proof-quote">
+      "Your firm's expertise is already there. The only question is whether the right people can find it — and whether they trust you before they ever reach out."
+    </div>
+    <div class="proof-stats">
+      <div class="proof-stat">
+        <div class="proof-number">70%</div>
+        <div class="proof-desc">of prospective clients research law firms online before making any contact</div>
+        <div class="proof-source">WifiTalents Law Firm Marketing Report, 2025</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-number">5.5%</div>
+        <div class="proof-desc">of law firms currently use a podcast — leaving the channel almost entirely unclaimed</div>
+        <div class="proof-source">Justia Legal Marketing Survey</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<div id="process">
+  <div class="section">
+    <div class="section-label">How It Works</div>
+    <div class="process-row">
+      <div class="process-step">
+        <div class="step-num">Step 01</div>
+        <div class="step-title">Discovery</div>
+        <p class="step-desc">We learn your practice, your audience, and what you want your podcast to do for the firm.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">Step 02</div>
+        <div class="step-title">Show Setup</div>
+        <p class="step-desc">Branding, hosting, video and distribution infrastructure — ready before your first recording session.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">Step 03</div>
+        <div class="step-title">You Record</div>
+        <p class="step-desc">30–60 minutes of your time per episode. We handle prep, scheduling, and remote setup.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">Step 04</div>
+        <div class="step-title">We Deliver</div>
+        <p class="step-desc">Edited video, audio, clips, and social posts — published on schedule, every time.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- CTA -->
+<div id="contact">
+  <div class="cta-section">
+    <h2>Ready to build your<br>firm's <em>authority?</em></h2>
+    <p>We work with a small number of firms at a time. If you're exploring a podcast for your practice, let's talk — no obligation, no pitch deck.</p>
+    <a href="mailto:hello@franklinandco.co" class="btn-primary">Book a Discovery Call</a>
+    <a href="mailto:hello@franklinandco.co" class="cta-email">or email hello@franklinandco.co</a>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<footer>
+  <div class="footer-mark">Franklin & Co.</div>
+  <div class="footer-copy">© 2026 · Podcast Production for Law Firms</div>
+</footer>
+
+</body>
+</html>
